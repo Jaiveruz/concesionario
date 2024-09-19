@@ -14,7 +14,7 @@
 
 1. Clonar el repositorio:
     sh
-    git clone https://gitlab.com/servicios-expresos/menssajero/servipaq.git
+    git clone https://github.com/Jaiveruz/concesionario.git
     
 
 2. Entrar a la carpeta del proyecto:
