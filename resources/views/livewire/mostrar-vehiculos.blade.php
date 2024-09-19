@@ -55,7 +55,7 @@
                                     Kilometraje
                                 </th>
                                 <th scope="col" class="px-6 py-3">
-                                    Action
+                                    Acciones
                                 </th>
                             </tr>
                         </thead>
@@ -245,7 +245,7 @@
 
        Livewire.on('delete', (id) => {
         Swal.fire({
-            title: "Are you sure?",
+            title: "Está seguro?",
             text: "No podra revertir los cambios!",
             icon: "warning",
             showCancelButton: true,

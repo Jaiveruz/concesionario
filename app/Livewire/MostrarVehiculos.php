@@ -120,7 +120,7 @@ class MostrarVehiculos extends Component
             $query->where('marca', 'LIKE', '%'. $this->search. '%')
                 ->orWhere('marca', 'LIKE', '%'. $this->search. '%');
         })
-        ->paginate(2);
+        ->paginate(5);
 
         return view('livewire.mostrar-vehiculos', compact('vehiculos'));
     }
