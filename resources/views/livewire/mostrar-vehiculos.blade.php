@@ -55,6 +55,9 @@
                                     Kilometraje
                                 </th>
                                 <th scope="col" class="px-6 py-3">
+                                    Imagen
+                                </th>
+                                <th scope="col" class="px-6 py-3">
                                     Acciones
                                 </th>
                             </tr>
@@ -76,6 +79,13 @@
                                     </td>
                                     <td class="px-6 py-4">
                                         {{ $vehiculo->precio }}
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        @if ( $vehiculo->image )
+                                            <img src="{{ Storage::url('vehiculos_image/' . $vehiculo->image) }}" alt="Imagen de Incidencia" class="max-w-12 max-h-max-w-12 rounded-full">
+                                        @else
+                                            No posee
+                                        @endif
                                     </td>
                                     <td class="px-6 py-4">
                                         {{ $vehiculo->kilometraje }}
@@ -132,6 +142,11 @@
                             <label class="block text-sm font-medium text-gray-700">Precio</label>
                             <input type="number" wire:model="precio" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md">
                             @error('precio') <span class="text-red-500">{{ $message }}</span> @enderror
+                        </div>
+                        <div class="mt-2">
+                            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="file_input">Subir imagen</label>
+                            <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" wire:model="image" type="file" accept=".jpg, .jpeg, .png">
+                            @error('image') <span class="text-red-500">{{ $message }}</span> @enderror
                         </div>
                         <div class="mt-2">
                             <label class="block text-sm font-medium text-gray-700">Kilometraje</label>
@@ -197,6 +212,11 @@
                             <label class="block text-sm font-medium text-gray-700">Precio</label>
                             <input type="number" wire:model="edit_precio" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md">
                             @error('edit_precio') <span class="text-red-500">{{ $message }}</span> @enderror
+                        </div>
+                        <div class="mt-2">
+                            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="file_input">Subir imagen</label>
+                            <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" wire:model="edit_image" type="file" accept=".jpg, .jpeg, .png">
+                            @error('edit_image') <span class="text-red-500">{{ $message }}</span> @enderror
                         </div>
                         <div class="mt-2">
                             <label class="block text-sm font-medium text-gray-700">Kilometraje</label>

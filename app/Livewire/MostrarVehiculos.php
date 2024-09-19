@@ -7,14 +7,16 @@ use Livewire\Attributes\Layout;
 use App\Models\Vehiculo;
 use Livewire\Attributes\On;
 use Livewire\WithPagination;
+use Livewire\WithFileUploads;
 
 
 #[Layout('layouts.app')] 
 class MostrarVehiculos extends Component
 {
     use WithPagination;
+    use WithFileUploads;
 
-    public $search, $marca, $modelo, $ano, $color, $kilometraje, $precio, $edit_marca, $edit_modelo, $edit_ano, $edit_color, $edit_kilometraje, $edit_precio, $vehiculo_id;
+    public $search, $marca, $modelo, $ano, $color, $kilometraje, $precio, $edit_marca, $edit_modelo, $edit_ano, $edit_color, $edit_kilometraje, $edit_precio, $vehiculo_id, $image, $edit_image;
     public $create = true;
     public $edit = true;
 
@@ -32,10 +34,11 @@ class MostrarVehiculos extends Component
             'color' => 'required|string|min:3|max:255',
             'kilometraje' => 'required|numeric',
             'precio' => 'required|numeric|min:3',
+            'image' => 'required|image',
         ]);
 
 
-        Vehiculo::create([
+        $vehiculo = Vehiculo::create([
             'marca' => $this->marca,
             'modelo' => $this->modelo,
             'ano' => $this->ano,
@@ -44,8 +47,16 @@ class MostrarVehiculos extends Component
             'precio' => $this->precio,
         ]);
 
+        if ( $this->image ) {
+            $imageName = time() . '.' . $this->image->extension();
+            $this->image->storeAs('vehiculos_image', $imageName, 'public');
+            $vehiculo->image = $imageName;
+            $vehiculo->save();
+        }
+
         $this->create = !$this->create;
         $this->dispatch('success', 'Vehículo creado con éxito'); 
+        $this->reset();
         $this->render();
     }
 
@@ -95,8 +106,17 @@ class MostrarVehiculos extends Component
             'precio' => $this->edit_precio,
         ]);
 
+        if ($this->edit_image) {
+            dd($this->edit_image);
+            $imageName = time() . '.' . $this->edit_image->extension();
+            $this->edit_image->storeAs('vehiculos_image', $imageName, 'public');
+            $vehiculo->image = $imageName;
+            $vehiculo->save();
+        }
+
         $this->edit = !$this->edit;
         $this->dispatch('success', 'Vehículo actualizado con éxito'); 
+        $this->reset();
         $this->render();
     }
 

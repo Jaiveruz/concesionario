@@ -19,5 +19,6 @@ class Vehiculo extends Model
         'color',
         'precio',
         'kilometraje',
+        'image'
     ];
 }

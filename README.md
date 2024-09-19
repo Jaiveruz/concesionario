@@ -38,6 +38,8 @@
 7. Ejecutar las migraciones y seeders:
     php artisan migrate --seed
     
+8. Ejecutar el siguiente comando 
+    php artisan storage:link 
 
 8. Iniciar el servidor:
     php artisan serve
